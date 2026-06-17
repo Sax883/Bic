@@ -158,14 +158,14 @@ function renderAdminClientRows(list) {
     const updatedAt = client.payout_info?.updated_at ? new Date(client.payout_info.updated_at).toLocaleDateString('en-CA') : '—';
     return `
       <tr>
-        <td>${client.full_name}</td>
-        <td>${client.client_id}</td>
-        <td>${client.email}</td>
-        <td>${client.enrollment_type}</td>
-        <td>${paymentMethod}</td>
-        <td>CAD ${Number(client.financials.outstanding_balance || client.financials.remaining_balance || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}</td>
-        <td>${updatedAt}</td>
-        <td><a class="button-secondary" href="/admin-client-edit.html?client_id=${client.client_id}">Review</a></td>
+        <td data-label="Name">${client.full_name}</td>
+        <td data-label="Case ID">${client.client_id}</td>
+        <td data-label="Email">${client.email}</td>
+        <td data-label="Track">${client.enrollment_type}</td>
+        <td data-label="Payment Method">${paymentMethod}</td>
+        <td data-label="Balance">CAD ${Number(client.financials.outstanding_balance || client.financials.remaining_balance || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}</td>
+        <td data-label="Updated">${updatedAt}</td>
+        <td data-label="Action"><a class="button-secondary" href="/admin-client-edit.html?client_id=${client.client_id}">Review</a></td>
       </tr>
     `;
   }).join('');
@@ -398,6 +398,16 @@ function bindEvents() {
   document.querySelector('#nav-toggle')?.addEventListener('click', () => {
     document.querySelector('.header')?.classList.toggle('nav-open');
   });
+
+  // Mobile touch fallbacks for critical buttons
+  const loginBtn = document.querySelector('#client-login-btn');
+  if (loginBtn) {
+    loginBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleClientLogin(); });
+  }
+  const registerBtn = document.querySelector('#client-register-btn');
+  if (registerBtn) {
+    registerBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleClientSignup(); });
+  }
 }
 
 window.handleClientLogin = handleClientLogin;
