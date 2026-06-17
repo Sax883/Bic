@@ -39,40 +39,50 @@ function showMessage(message, type = 'success') {
 }
 
 async function handleClientLogin() {
-  showMessage('Processing login...', 'success');
-  const email = document.querySelector('#client-email').value.trim();
-  const password = document.querySelector('#client-password').value.trim();
-  if (!email || !password) return showMessage('Complete all fields before logging in.', 'error');
-  const response = await fetch(`${apiBase}/auth/client/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
-  const data = await response.json();
-  if (!response.ok) return showMessage(data.error || 'Login failed.', 'error');
-  setToken(data.token);
-  window.location.href = '/client-dashboard.html';
+  try {
+    showMessage('Processing login...', 'success');
+    const email = document.querySelector('#client-email').value.trim();
+    const password = document.querySelector('#client-password').value.trim();
+    if (!email || !password) return showMessage('Complete all fields before logging in.', 'error');
+    const response = await fetch(`${apiBase}/auth/client/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    if (!response.ok) return showMessage(data.error || 'Login failed.', 'error');
+    setToken(data.token);
+    window.location.href = '/client-dashboard.html';
+  } catch (error) {
+    console.error('Client login error', error);
+    showMessage('Unable to reach the server. Please try again.', 'error');
+  }
 }
 
 async function handleClientSignup() {
-  showMessage('Processing registration...', 'success');
-  const full_name = document.querySelector('#signup-name').value.trim();
-  const email = document.querySelector('#signup-email').value.trim();
-  const password = document.querySelector('#signup-password').value.trim();
-  const enrollment_type = document.querySelector('#signup-track').value;
-  const refund_amount = Number(document.querySelector('#signup-refund-amount').value || 0);
-  if (!full_name || !email || !password || !enrollment_type || refund_amount <= 0) return showMessage('Please complete all signup fields and enter a refund amount.', 'error');
-  const response = await fetch(`${apiBase}/auth/client/signup`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ full_name, email, password, enrollment_type, refund_amount })
-  });
-  const data = await response.json();
-  if (!response.ok) return showMessage(data.error || 'Unable to register.', 'error');
-  showMessage(`${data.message} Your case ID is ${data.client_id}.`, 'success');
-  setTimeout(() => {
-    window.location.href = '/client-login.html';
-  }, 2000);
+  try {
+    showMessage('Processing registration...', 'success');
+    const full_name = document.querySelector('#signup-name').value.trim();
+    const email = document.querySelector('#signup-email').value.trim();
+    const password = document.querySelector('#signup-password').value.trim();
+    const enrollment_type = document.querySelector('#signup-track').value;
+    const refund_amount = Number(document.querySelector('#signup-refund-amount').value || 0);
+    if (!full_name || !email || !password || !enrollment_type) return showMessage('Please complete all required signup fields.', 'error');
+    const response = await fetch(`${apiBase}/auth/client/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ full_name, email, password, enrollment_type, refund_amount })
+    });
+    const data = await response.json();
+    if (!response.ok) return showMessage(data.error || 'Unable to register.', 'error');
+    showMessage(`${data.message} Redirecting to login...`, 'success');
+    setTimeout(() => {
+      window.location.href = '/client-login.html';
+    }, 1200);
+  } catch (error) {
+    console.error('Client signup error', error);
+    showMessage('Unable to reach the server. Please try again.', 'error');
+  }
 }
 
 async function handleForgotPassword() {

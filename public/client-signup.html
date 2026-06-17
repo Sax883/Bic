@@ -56,10 +56,10 @@
           </select>
         </div>
         <div class="form-field">
-          <label for="signup-refund-amount">Refund Amount Filed</label>
-          <input id="signup-refund-amount" type="number" min="0" step="0.01" placeholder="Enter refund amount you are filing for" required />
+          <label for="signup-refund-amount">Refund Amount Filed (optional)</label>
+          <input id="signup-refund-amount" type="number" min="0" step="0.01" placeholder="Enter refund amount you are filing for (optional)" />
         </div>
-        <button class="button-primary" type="button" onclick="handleClientSignup()">Register Account</button>
+        <button id="client-register-btn" class="button-primary" type="button" onclick="handleClientSignup()">Register Account</button>
       </form>
       <p style="margin-top:1rem; color: var(--muted);">After registration, use the login page to access your dashboard and review your case details.</p>
     </section>
