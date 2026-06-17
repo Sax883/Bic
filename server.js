@@ -23,6 +23,7 @@ if (!MONGODB_URI) {
 
 let db;
 let mongoClient;
+let dbPromise = null;
 
 async function connectDb() {
   mongoClient = new MongoClient(MONGODB_URI);
@@ -38,15 +39,29 @@ async function connectDb() {
   console.log('Connected to MongoDB');
 }
 
-function getClientCollection() {
+async function ensureDbConnected() {
+  if (db) return;
+  if (!dbPromise) {
+    dbPromise = connectDb().catch((err) => {
+      dbPromise = null;
+      throw err;
+    });
+  }
+  await dbPromise;
+}
+
+async function getClientCollection() {
+  await ensureDbConnected();
   return db.collection('clients');
 }
 
-function getMessagesCollection() {
+async function getMessagesCollection() {
+  await ensureDbConnected();
   return db.collection('messages');
 }
 
-function getAuditCollection() {
+async function getAuditCollection() {
+  await ensureDbConnected();
   return db.collection('audit_logs');
 }
 
@@ -361,14 +376,18 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
-async function startServer() {
-  await connectDb();
-  app.listen(PORT, () => {
-    console.log(`BIC Canada Refund portal running on http://localhost:${PORT}`);
+if (!process.env.VERCEL) {
+  async function startServer() {
+    await connectDb();
+    app.listen(PORT, () => {
+      console.log(`BIC Canada Refund portal running on http://localhost:${PORT}`);
+    });
+  }
+
+  startServer().catch((err) => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
   });
 }
 
-startServer().catch((err) => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});
+module.exports = app;
