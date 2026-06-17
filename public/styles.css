@@ -180,11 +180,12 @@ nav a.button {
   z-index: 9999;
   flex-direction: column;
   gap: 0.15rem;
-  display: flex;
+  display: none; /* hidden by default */
 }
 
-.dashboard-menu.d-none {
-  display: none !important;
+/* Only show when NOT d-none */
+.dashboard-menu:not(.d-none) {
+  display: flex !important;
 }
 
 .dashboard-menu .dashboard-menu-item {
@@ -202,9 +203,6 @@ nav a.button {
 .dashboard-menu .dashboard-menu-item:hover {
   background: var(--surface-secondary);
 }
-
-.client-id-card .dashboard-menu { display: none; }
-.client-id-card.nav-open .dashboard-menu { display: flex; }
 
 .site-brand {
   display: flex;
