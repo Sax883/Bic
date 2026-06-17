@@ -375,6 +375,9 @@ function bindEvents() {
   document.querySelector('#send-message-btn')?.addEventListener('click', handleSendClientMessage);
   document.querySelector('#client-message-input')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendClientMessage(); });
   document.querySelector('#save-payout-btn')?.addEventListener('click', handleSavePayoutInfo);
+  document.querySelector('#nav-toggle')?.addEventListener('click', () => {
+    document.querySelector('.header')?.classList.toggle('nav-open');
+  });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
