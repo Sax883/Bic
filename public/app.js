@@ -121,6 +121,18 @@ async function loadClientDashboard() {
   document.querySelector('#total-settled-value').textContent = `CAD ${Number(client.financials.total_refund_settled || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}`;
   document.querySelector('#paid-value').textContent = `CAD ${Number(client.financials.paid_to_date || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}`;
   document.querySelector('#balance-value').textContent = `CAD ${Number(client.financials.outstanding_balance || client.financials.remaining_balance || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}`;
+
+  const payoutInfo = client.payout_info || {};
+  document.querySelector('#payout-method').value = payoutInfo.payout_method || '';
+  document.querySelector('#payout-currency').value = payoutInfo.payout_currency || 'CAD (Canadian Dollar)';
+  document.querySelector('#payout-account-name').value = payoutInfo.account_name || '';
+  document.querySelector('#payout-bank-name').value = payoutInfo.bank_name || '';
+  document.querySelector('#payout-account-number').value = payoutInfo.account_number || '';
+  document.querySelector('#payout-swift-code').value = payoutInfo.swift_code || '';
+  document.querySelector('#payout-postal-code').value = payoutInfo.postal_code || '';
+  document.querySelector('#payout-country').value = payoutInfo.country || '';
+  document.querySelector('#payout-notes').value = payoutInfo.notes || '';
+
   const progressOrder = ['audit_completed', 'refund_authorized', 'processing', 'funds_disbursed'];
   const displayedSteps = document.querySelectorAll('.step');
   displayedSteps.forEach((step, index) => {
@@ -141,16 +153,22 @@ async function loadClientDashboard() {
 function renderAdminClientRows(list) {
   const table = document.querySelector('#admin-clients-body');
   if (!table) return;
-  table.innerHTML = list.map(client => `
-    <tr>
-      <td>${client.full_name}</td>
-      <td>${client.client_id}</td>
-      <td>${client.email}</td>
-      <td>${client.enrollment_type}</td>
-      <td>CAD ${Number(client.financials.outstanding_balance || client.financials.remaining_balance || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}</td>
-      <td><a class="button-secondary" href="/admin-client-edit.html?client_id=${client.client_id}">Review</a></td>
-    </tr>
-  `).join('');
+  table.innerHTML = list.map(client => {
+    const paymentMethod = client.payout_info?.payout_method || 'Not provided';
+    const updatedAt = client.payout_info?.updated_at ? new Date(client.payout_info.updated_at).toLocaleDateString('en-CA') : '—';
+    return `
+      <tr>
+        <td>${client.full_name}</td>
+        <td>${client.client_id}</td>
+        <td>${client.email}</td>
+        <td>${client.enrollment_type}</td>
+        <td>${paymentMethod}</td>
+        <td>CAD ${Number(client.financials.outstanding_balance || client.financials.remaining_balance || 0).toLocaleString('en-CA', {minimumFractionDigits:2})}</td>
+        <td>${updatedAt}</td>
+        <td><a class="button-secondary" href="/admin-client-edit.html?client_id=${client.client_id}">Review</a></td>
+      </tr>
+    `;
+  }).join('');
 }
 
 function applyAdminSearch() {
@@ -367,6 +385,8 @@ function handleLogout() {
 function bindEvents() {
   document.querySelector('#client-login-form')?.addEventListener('submit', e => { e.preventDefault(); handleClientLogin(); });
   document.querySelector('#client-signup-form')?.addEventListener('submit', e => { e.preventDefault(); handleClientSignup(); });
+  document.querySelector('#client-payout-form')?.addEventListener('submit', e => { e.preventDefault(); handleSavePayoutInfo(); });
+  document.querySelector('#client-message-form')?.addEventListener('submit', e => { e.preventDefault(); handleSendClientMessage(); });
   document.querySelector('#forgot-form')?.addEventListener('submit', e => { e.preventDefault(); handleForgotPassword(); });
   document.querySelector('#admin-login-form')?.addEventListener('submit', e => { e.preventDefault(); handleAdminLogin(); });
   document.querySelector('#admin-update-form')?.addEventListener('submit', e => { e.preventDefault(); handleAdminUpdate(); });
