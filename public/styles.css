@@ -163,9 +163,12 @@ nav a.button {
   transform: translateY(-6px) rotate(-45deg);
 }
 
+.d-none {
+  display: none !important;
+}
+
 .dashboard-menu {
   position: absolute;
-  /* position the menu below the client card so it doesn't overlap header text */
   top: calc(100% + 0.4rem);
   right: 1rem;
   min-width: 200px;
@@ -174,14 +177,15 @@ nav a.button {
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
   border-radius: 12px;
   padding: 0.25rem;
-  display: none; /* hidden by default */
-  z-index: 9999; /* ensure it overlays content cleanly */
+  z-index: 9999;
   flex-direction: column;
   gap: 0.15rem;
+  display: flex;
 }
 
-.client-id-card .dashboard-menu { display: none; }
-.client-id-card.nav-open .dashboard-menu { display: flex; }
+.dashboard-menu.d-none {
+  display: none !important;
+}
 
 .dashboard-menu .dashboard-menu-item {
   display: block;
@@ -198,6 +202,9 @@ nav a.button {
 .dashboard-menu .dashboard-menu-item:hover {
   background: var(--surface-secondary);
 }
+
+.client-id-card .dashboard-menu { display: none; }
+.client-id-card.nav-open .dashboard-menu { display: flex; }
 
 .site-brand {
   display: flex;

@@ -406,16 +406,18 @@ function handleLogout() {
 }
 
 function toggleDashboardMenu() {
-  const card = document.querySelector('.client-id-card');
+  const menu = document.querySelector('#dashboard-menu');
   const toggle = document.querySelector('#dashboard-nav-toggle');
-  if (!card || !toggle) return;
-  card.classList.toggle('nav-open');
+  if (!menu || !toggle) return;
+  menu.classList.toggle('d-none');
   toggle.classList.toggle('open');
 }
 
 function closeDashboardMenu() {
-  document.querySelector('.client-id-card')?.classList.remove('nav-open');
-  document.querySelector('#dashboard-nav-toggle')?.classList.remove('open');
+  const menu = document.querySelector('#dashboard-menu');
+  const toggle = document.querySelector('#dashboard-nav-toggle');
+  if (menu) menu.classList.add('d-none');
+  if (toggle) toggle.classList.remove('open');
 }
 
 function showDashboardView(view) {

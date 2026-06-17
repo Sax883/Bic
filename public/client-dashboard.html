@@ -32,7 +32,19 @@
         <span></span>
         <span></span>
       </button>
-      <div id="dashboard-menu" class="dashboard-menu" role="menu">
+      <div class="section-header">
+        <div>
+          <div style="font-size:0.95rem; color: var(--muted);">Client ID</div>
+          <div style="font-size:1.3rem; font-weight:700;"> <span id="client-id">BIC-2026-0943</span></div>
+          <div style="font-size:1.05rem; margin-top:0.15rem;">Welcome back, <strong id="client-welcome">Bb</strong></div>
+        </div>
+        <div>
+          <div class="status-pill" id="client-status">Under Review</div>
+          <div style="margin-top:0.65rem; color: var(--muted);">Canadian Refund Package</div>
+        </div>
+      </div>
+      <!-- Isolated menu container that only toggles visibility -->
+      <div id="dashboard-menu" class="dashboard-menu d-none" role="menu">
         <button data-view="overview" class="dashboard-menu-item" type="button">Overview</button>
         <button data-view="payout" class="dashboard-menu-item" type="button">Payout Method</button>
         <button data-view="progress" class="dashboard-menu-item" type="button">Progress Tracker</button>
@@ -40,17 +52,6 @@
         <button data-view="contact" class="dashboard-menu-item" type="button">Contact Support</button>
         <hr style="margin:8px 0;border:none;border-top:1px solid var(--border);" />
         <button id="dashboard-logout-button" class="button-secondary" type="button">Logout</button>
-      </div>
-      <div class="section-header">
-        <div>
-          <div style="font-size:0.95rem; color: var(--muted);">Client ID</div>
-          <div style="font-size:1.3rem; font-weight:700;"> <span id="client-id"></span></div>
-          <div style="font-size:1.05rem; margin-top:0.15rem;">Welcome back, <strong id="client-welcome"></strong></div>
-        </div>
-        <div>
-          <div class="status-pill" id="client-status">Status</div>
-          <div style="margin-top:0.65rem; color: var(--muted);">Canadian Refund Package</div>
-        </div>
       </div>
     </section>
 
