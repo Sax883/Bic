@@ -63,28 +63,28 @@
         <div class="metric-grid" style="margin-top:1.4rem;">
           <div class="metric-card">
             <h4>Total Refund Initiated</h4>
-            <p id="total-initiated-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+            <p id="total-initiated-value" class="stat-value">CAD 0.00</p>
           </div>
           <div class="metric-card">
             <h4>Total Refund Pending</h4>
-            <p id="total-pending-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
-            <small style="color:#7b7b7b; display:block; margin-top:0.5rem;">Complete service charge before funds will be released, contact your consultant.</small>
+            <p id="total-pending-value" class="stat-value">CAD 0.00</p>
+            <small style="color:var(--muted); display:block; margin-top:0.5rem;">Complete service charge before funds will be released, contact your consultant.</small>
           </div>
           <div class="metric-card">
             <h4>Total Refund Activated</h4>
-            <p id="total-activated-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+            <p id="total-activated-value" class="stat-value">CAD 0.00</p>
           </div>
           <div class="metric-card">
             <h4>Total Refund Settled</h4>
-            <p id="total-settled-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+            <p id="total-settled-value" class="stat-value">CAD 0.00</p>
           </div>
           <div class="metric-card">
             <h4>Paid to Date</h4>
-            <p id="paid-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+            <p id="paid-value" class="stat-value">CAD 0.00</p>
           </div>
           <div class="metric-card">
             <h4>Outstanding Balance</h4>
-            <p id="balance-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+            <p id="balance-value" class="stat-value">CAD 0.00</p>
           </div>
         </div>
       </div>
@@ -193,10 +193,10 @@
         <h2>Contact Support</h2>
         <p style="margin:0; color: var(--muted);">Send a message to our support team</p>
       </div>
-      <div id="messages-container" style="margin-top:1rem; max-height:400px; overflow-y:auto; border:1px solid var(--border); border-radius:8px; padding:1rem; background:var(--surface-secondary); margin-bottom:1rem;">
+      <div id="messages-container" class="messages-box">
         <div style="text-align:center; color:var(--muted);">No messages yet</div>
       </div>
-      <form id="client-message-form" style="display:flex; gap:0.75rem; flex-wrap:wrap;" onsubmit="return false;">
+      <form id="client-message-form" class="no-scroll-bottom" style="display:flex; gap:0.75rem; flex-wrap:wrap;" onsubmit="return false;">
         <input id="client-message-input" type="text" placeholder="Type your message..." style="flex:1; min-width:200px; padding:0.75rem 1rem; border:1px solid var(--border); border-radius:8px; font-size:0.95rem;" />
         <button class="button-primary" type="button" id="send-message-btn" onclick="handleSendClientMessage()">Send Message</button>
       </form>

@@ -60,17 +60,6 @@ async function ensureDbConnected() {
   await dbPromise;
 }
 
-async function ensureDbConnected() {
-  if (db) return;
-  if (!dbPromise) {
-    dbPromise = connectDb().catch((err) => {
-      dbPromise = null;
-      throw err;
-    });
-  }
-  await dbPromise;
-}
-
 async function getClientCollection() {
   await ensureDbConnected();
   return db.collection('clients');
@@ -156,7 +145,8 @@ app.use('/image', express.static(path.join(__dirname, 'image')));
 
 app.post('/api/auth/client/login', asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  const client = await getClientCollection().findOne({ email, password_hash: password });
+  const clients = await getClientCollection();
+  const client = await clients.findOne({ email, password_hash: password });
   if (!client) return res.status(400).json({ error: 'Invalid credentials' });
   const token = generateToken({ type: 'client', email: client.email, client_id: client.client_id, full_name: client.full_name });
   res.json({ token, client_id: client.client_id, full_name: client.full_name });
@@ -167,7 +157,8 @@ app.post('/api/auth/client/signup', asyncHandler(async (req, res) => {
   if (!email || !password || !full_name) {
     return res.status(400).json({ error: 'full_name, email, and password are required' });
   }
-  const existing = await getClientCollection().findOne({ email });
+  const clients = await getClientCollection();
+  const existing = await clients.findOne({ email });
   if (existing) return res.status(400).json({ error: 'Email already registered' });
   const idSuffix = Date.now().toString().slice(-4);
   const clientId = `BIC-2026-${idSuffix}`;
@@ -204,14 +195,15 @@ app.post('/api/auth/client/signup', asyncHandler(async (req, res) => {
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString()
   };
-  await getClientCollection().insertOne(newClient);
+  await clients.insertOne(newClient);
   res.json({ message: 'Signup successful. Please log in.', client_id: clientId });
 }));
 
 app.post('/api/auth/client/forgot', async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ error: 'Email is required' });
-  const client = await getClientCollection().findOne({ email });
+  const clients = await getClientCollection();
+  const client = await clients.findOne({ email });
   if (!client) return res.status(400).json({ error: 'Email not found' });
   res.json({ message: 'Password reset requested. Use your registered password or contact support.', email });
 });
@@ -226,18 +218,21 @@ app.post('/api/auth/admin/login', async (req, res) => {
 });
 
 app.get('/api/client/dashboard', authenticateClient, async (req, res) => {
-  const client = await getClientCollection().findOne({ client_id: req.client.client_id });
+  const clients = await getClientCollection();
+  const client = await clients.findOne({ client_id: req.client.client_id });
   if (!client) return res.status(404).json({ error: 'Client data not found' });
   res.json({ client: normalizeClient(client) });
 });
 
 app.get('/api/admin/clients', authenticateAdmin, async (req, res) => {
-  const clients = await getClientCollection().find().toArray();
-  res.json({ clients: clients.map(normalizeClient) });
+  const clients = await getClientCollection();
+  const list = await clients.find().toArray();
+  res.json({ clients: list.map(normalizeClient) });
 });
 
 app.get('/api/admin/client/:clientId', authenticateAdmin, async (req, res) => {
-  const client = await getClientCollection().findOne({ client_id: req.params.clientId });
+  const clients = await getClientCollection();
+  const client = await clients.findOne({ client_id: req.params.clientId });
   if (!client) return res.status(404).json({ error: 'Client not found' });
   res.json({ client: normalizeClient(client) });
 });
@@ -259,7 +254,8 @@ app.post('/api/admin/update-refund', authenticateAdmin, async (req, res) => {
     progress
   } = req.body;
 
-  const client = await getClientCollection().findOne({ client_id });
+  const clients = await getClientCollection();
+  const client = await clients.findOne({ client_id });
   if (!client) return res.status(404).json({ error: 'Client not found' });
 
   const updatedClient = normalizeClient(client);
@@ -297,12 +293,13 @@ app.post('/api/admin/update-refund', authenticateAdmin, async (req, res) => {
     });
   }
 
-  await getClientCollection().updateOne(
+  await (await getClientCollection()).updateOne(
     { client_id },
     { $set: updatedClient }
   );
 
-  await getAuditCollection().insertOne({
+  const audit = await getAuditCollection();
+  await audit.insertOne({
     audit_id: `AUD-${Date.now().toString().slice(-8)}`,
     admin: req.admin.email,
     client_id,
@@ -330,7 +327,8 @@ app.post('/api/admin/update-refund', authenticateAdmin, async (req, res) => {
 
 app.post('/api/client/save-payout', authenticateClient, async (req, res) => {
   const { payout_method, payout_currency, account_name, bank_name, account_number, swift_code, postal_code, country, notes } = req.body;
-  const client = await getClientCollection().findOne({ client_id: req.client.client_id });
+  const clients = await getClientCollection();
+  const client = await clients.findOne({ client_id: req.client.client_id });
   if (!client) return res.status(404).json({ error: 'Client not found' });
   const payoutInfo = {
     payout_method,
@@ -344,7 +342,7 @@ app.post('/api/client/save-payout', authenticateClient, async (req, res) => {
     notes,
     updated_at: new Date().toISOString()
   };
-  await getClientCollection().updateOne(
+  await clients.updateOne(
     { client_id: req.client.client_id },
     { $set: { payout_info: payoutInfo, updated_at: new Date().toISOString() } }
   );
@@ -354,7 +352,8 @@ app.post('/api/client/save-payout', authenticateClient, async (req, res) => {
 app.post('/api/client/send-message', authenticateClient, async (req, res) => {
   const { message_text } = req.body;
   if (!message_text || message_text.trim().length === 0) return res.status(400).json({ error: 'Message cannot be empty' });
-  await getMessagesCollection().insertOne({
+  const messages = await getMessagesCollection();
+  await messages.insertOne({
     message_id: Date.now().toString(),
     client_id: req.client.client_id,
     client_name: req.client.full_name,
@@ -368,14 +367,16 @@ app.post('/api/client/send-message', authenticateClient, async (req, res) => {
 });
 
 app.get('/api/admin/messages', authenticateAdmin, async (req, res) => {
-  const messages = await getMessagesCollection().find().sort({ created_at: -1 }).toArray();
-  res.json({ messages });
+  const messages = await getMessagesCollection();
+  const list = await messages.find().sort({ created_at: -1 }).toArray();
+  res.json({ messages: list });
 });
 
 app.post('/api/admin/reply-message', authenticateAdmin, async (req, res) => {
   const { message_id, reply_text } = req.body;
   if (!reply_text || reply_text.trim().length === 0) return res.status(400).json({ error: 'Reply cannot be empty' });
-  const result = await getMessagesCollection().findOneAndUpdate(
+  const messages = await getMessagesCollection();
+  const result = await messages.findOneAndUpdate(
     { message_id },
     {
       $set: {
@@ -390,11 +391,12 @@ app.post('/api/admin/reply-message', authenticateAdmin, async (req, res) => {
 });
 
 app.get('/api/client/messages', authenticateClient, async (req, res) => {
-  const messages = await getMessagesCollection()
+  const messages = await getMessagesCollection();
+  const list = await messages
     .find({ client_id: req.client.client_id })
     .sort({ created_at: -1 })
     .toArray();
-  res.json({ messages });
+  res.json({ messages: list });
 });
 
 app.get('/api/health', asyncHandler(async (req, res) => {

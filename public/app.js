@@ -318,7 +318,7 @@ async function loadClientMessages() {
     <div style="margin-bottom:1rem; padding:0.75rem; border-left:4px solid var(--primary); background:white; border-radius:4px;">
       <div style="font-size:0.85rem; color:var(--muted); margin-bottom:0.25rem;">${msg.sender === 'client' ? 'You' : 'Admin'} • ${new Date(msg.created_at).toLocaleDateString('en-CA')}</div>
       <p style="margin:0.5rem 0;">${msg.message_text}</p>
-      ${msg.admin_reply ? `<div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid var(--border);"><div style="font-size:0.85rem; color:#c41e3a; font-weight:700; margin-bottom:0.25rem;">Admin Reply</div><p style="margin:0;">${msg.admin_reply}</p></div>` : ''}
+      ${msg.admin_reply ? `<div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid var(--border);"><div style="font-size:0.85rem; color:var(--primary); font-weight:700; margin-bottom:0.25rem;">Admin Reply</div><p style="margin:0;">${msg.admin_reply}</p></div>` : ''}
     </div>
   `).join('');
 }
@@ -355,10 +355,10 @@ async function loadAdminMessages() {
       <div style="font-weight:700; color:var(--primary);">${msg.client_name}</div>
       <div style="font-size:0.85rem; color:var(--muted); margin-bottom:0.5rem;">Client ID: ${msg.client_id} • ${new Date(msg.created_at).toLocaleDateString('en-CA')}</div>
       <p style="margin:0.5rem 0; color:var(--text);">${msg.message_text}</p>
-      ${msg.admin_reply ? `<div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid var(--border);"><div style="font-size:0.85rem; color:#c41e3a; font-weight:700; margin-bottom:0.25rem;">Your Reply</div><p style="margin:0;">${msg.admin_reply}</p></div>` : `
+      ${msg.admin_reply ? `<div style="margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid var(--border);"><div style="font-size:0.85rem; color:var(--primary); font-weight:700; margin-bottom:0.25rem;">Your Reply</div><p style="margin:0;">${msg.admin_reply}</p></div>` : `
         <div style="margin-top:0.75rem; display:flex; gap:0.5rem;">
           <input type="text" id="reply-${msg._id}" placeholder="Type reply..." style="flex:1; padding:0.5rem; border:1px solid var(--border); border-radius:4px; font-size:0.9rem;" />
-          <button style="padding:0.5rem 1rem; background:#c41e3a; color:white; border:none; border-radius:4px; cursor:pointer; font-size:0.9rem;" onclick="handleAdminReply('${msg._id}')">Reply</button>
+          <button style="padding:0.5rem 1rem; background:var(--primary); color:white; border:none; border-radius:4px; cursor:pointer; font-size:0.9rem;" onclick="handleAdminReply('${msg._id}')">Reply</button>
         </div>
       `}
     </div>
