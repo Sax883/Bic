@@ -500,6 +500,11 @@ body[data-page="client-dashboard"] #client-message-input {
   color: var(--muted);
 }
 
+/* Make stepper responsive: allow wrapping and tighter steps on small screens */
+.progress-stepper { flex-wrap: wrap; }
+.step { flex: 1 1 42%; min-width: 140px; box-sizing: border-box; }
+.step + .step { margin-left: 0; }
+
 .step.active {
   background: var(--primary);
   color: #fff;
@@ -566,4 +571,13 @@ body[data-page="client-dashboard"] #client-message-input {
   .brand-copy .title {
     font-size: 0.98rem;
   }
+
+  /* Reduce step padding and allow two-per-row layout */
+  .progress-stepper { gap: 0.5rem; }
+  .progress-stepper .step { padding: 0.6rem; font-size: 0.95rem; flex-basis: 48%; }
+
+  /* Ensure last page sections don't leave extra bottom whitespace */
+  main.container { padding-bottom: 0 !important; }
+  section.card:last-of-type { margin-bottom: 0 !important; padding-bottom: 0.6rem !important; }
+  #messages-container, .messages-box { margin-bottom: 0 !important; }
 }
