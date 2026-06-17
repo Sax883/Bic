@@ -180,9 +180,8 @@ nav a.button {
   gap: 0.15rem;
 }
 
-.dashboard-menu.open {
-  display: flex; /* show as vertical column when opened */
-}
+.client-id-card .dashboard-menu { display: none; }
+.client-id-card.nav-open .dashboard-menu { display: flex; }
 
 .dashboard-menu .dashboard-menu-item {
   display: block;

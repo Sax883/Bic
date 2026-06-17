@@ -406,15 +406,15 @@ function handleLogout() {
 }
 
 function toggleDashboardMenu() {
-  const menu = document.querySelector('#dashboard-menu');
+  const card = document.querySelector('.client-id-card');
   const toggle = document.querySelector('#dashboard-nav-toggle');
-  if (!menu || !toggle) return;
-  menu.classList.toggle('open');
+  if (!card || !toggle) return;
+  card.classList.toggle('nav-open');
   toggle.classList.toggle('open');
 }
 
 function closeDashboardMenu() {
-  document.querySelector('#dashboard-menu')?.classList.remove('open');
+  document.querySelector('.client-id-card')?.classList.remove('nav-open');
   document.querySelector('#dashboard-nav-toggle')?.classList.remove('open');
 }
 
