@@ -397,6 +397,16 @@ app.get('/api/client/messages', authenticateClient, async (req, res) => {
   res.json({ messages });
 });
 
+app.get('/api/health', asyncHandler(async (req, res) => {
+  try {
+    await ensureDbConnected();
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('Health check failed:', err && err.message ? err.message : err);
+    res.status(503).json({ ok: false, error: 'DB connection failed' });
+  }
+}));
+
 app.use((err, req, res, next) => {
   console.error('Unhandled server error:', err);
   if (res.headersSent) return next(err);
