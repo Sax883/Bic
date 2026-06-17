@@ -35,6 +35,23 @@ body {
   overflow-x: hidden;
 }
 
+body[data-page="client-dashboard"] .header {
+  display: none;
+}
+
+body[data-page="client-dashboard"] main.container {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+main.container {
+  padding-bottom: 0;
+}
+
+section.card:last-of-type {
+  margin-bottom: 0;
+}
+
 button, input, select, textarea {
   font: inherit;
 }
@@ -104,6 +121,23 @@ nav a.button {
   justify-content: center;
 }
 
+.card-nav-toggle {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.card-nav-toggle span,
 .nav-toggle span {
   display: block;
   width: 24px;
@@ -114,16 +148,37 @@ nav a.button {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.header.nav-open .nav-toggle span:nth-child(1) {
+.header.nav-open .nav-toggle span:nth-child(1),
+.card-nav-toggle.open span:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
 
-.header.nav-open .nav-toggle span:nth-child(2) {
+.header.nav-open .nav-toggle span:nth-child(2),
+.card-nav-toggle.open span:nth-child(2) {
   opacity: 0;
 }
 
-.header.nav-open .nav-toggle span:nth-child(3) {
+.header.nav-open .nav-toggle span:nth-child(3),
+.card-nav-toggle.open span:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
+}
+
+.dashboard-menu {
+  position: absolute;
+  top: 3.75rem;
+  right: 1rem;
+  min-width: 180px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+  border-radius: 14px;
+  padding: 0.75rem;
+  display: none;
+  z-index: 15;
+}
+
+.dashboard-menu.open {
+  display: block;
 }
 
 .site-brand {
@@ -266,6 +321,10 @@ nav a.button {
 
 .card, .form-card {
   padding: 1.6rem;
+}
+
+.client-id-card {
+  position: relative;
 }
 
 .card-header,
@@ -418,6 +477,7 @@ textarea {
   body[data-page="client-dashboard"] .metric-card p { font-size: 1.1rem; }
   body[data-page="client-dashboard"] #messages-container { max-height:260px; margin-bottom:0.2rem; }
   body[data-page="client-dashboard"] #client-message-form { margin-bottom:0.2rem; }
+  body[data-page="client-dashboard"] .client-id-card .card-nav-toggle { display: flex; }
   body[data-page="client-dashboard"] section.card:last-of-type { margin-bottom: 0.25rem; }
   /* Make progress step active use under-review color */
   .progress-stepper .step.active { background: var(--surface-secondary); color: var(--heading); border-radius: 10px; padding: 0.6rem; }
@@ -443,7 +503,7 @@ body[data-page="client-dashboard"] .hero-visual .metric-card {
 body[data-page="client-dashboard"] .status-under-review { background: #eef2ff; color: #34418d; }
 
 body[data-page="client-dashboard"] main.container {
-  padding-bottom: 1rem;
+  padding-bottom: 0;
   margin-bottom: 0;
 }
 body[data-page="client-dashboard"] section.card:last-of-type {

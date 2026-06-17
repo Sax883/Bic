@@ -405,6 +405,19 @@ function handleLogout() {
   window.location.href = '/';
 }
 
+function toggleDashboardMenu() {
+  const menu = document.querySelector('#dashboard-menu');
+  const toggle = document.querySelector('#dashboard-nav-toggle');
+  if (!menu || !toggle) return;
+  menu.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+function closeDashboardMenu() {
+  document.querySelector('#dashboard-menu')?.classList.remove('open');
+  document.querySelector('#dashboard-nav-toggle')?.classList.remove('open');
+}
+
 function bindEvents() {
   document.querySelector('#client-login-form')?.addEventListener('submit', e => { e.preventDefault(); handleClientLogin(); });
   document.querySelector('#client-signup-form')?.addEventListener('submit', e => { e.preventDefault(); handleClientSignup(); });
@@ -415,11 +428,21 @@ function bindEvents() {
   document.querySelector('#admin-update-form')?.addEventListener('submit', e => { e.preventDefault(); handleAdminUpdate(); });
   document.querySelector('#admin-search')?.addEventListener('input', applyAdminSearch);
   document.querySelector('#logout-button')?.addEventListener('click', handleLogout);
+  document.querySelector('#dashboard-nav-toggle')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDashboardMenu();
+  });
+  document.querySelector('#dashboard-logout-button')?.addEventListener('click', handleLogout);
   document.querySelector('#send-message-btn')?.addEventListener('click', handleSendClientMessage);
   document.querySelector('#client-message-input')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendClientMessage(); });
   document.querySelector('#save-payout-btn')?.addEventListener('click', handleSavePayoutInfo);
   document.querySelector('#nav-toggle')?.addEventListener('click', () => {
     document.querySelector('.header')?.classList.toggle('nav-open');
+  });
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('#dashboard-menu') && !event.target.closest('#dashboard-nav-toggle')) {
+      closeDashboardMenu();
+    }
   });
 
   // Robust handlers for critical buttons (click, pointerdown, touchstart)

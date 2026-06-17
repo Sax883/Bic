@@ -20,15 +20,21 @@
       <span></span>
       <span></span>
     </button>
-    <nav class="header-nav">
-      <button id="logout-button" class="button-secondary" onclick="handleLogout()">Logout</button>
-    </nav>
+    <nav class="header-nav"></nav>
   </header>
 
   <main class="container">
     <div id="message-area"></div>
 
-    <section class="card">
+    <section class="card client-id-card">
+      <button id="dashboard-nav-toggle" class="nav-toggle card-nav-toggle" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div id="dashboard-menu" class="dashboard-menu" role="menu">
+        <button id="dashboard-logout-button" class="button-secondary" type="button">Logout</button>
+      </div>
       <div class="section-header">
         <div>
           <div style="font-size:0.95rem; color: var(--muted);">Client ID</div>
