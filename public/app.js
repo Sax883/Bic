@@ -399,15 +399,25 @@ function bindEvents() {
     document.querySelector('.header')?.classList.toggle('nav-open');
   });
 
-  // Mobile touch fallbacks for critical buttons
+  // Robust handlers for critical buttons (click, pointerdown, touchstart)
+  const attachFastHandlers = (el, handler) => {
+    try {
+      el.addEventListener('click', handler);
+    } catch (e) {}
+    try {
+      el.addEventListener('pointerdown', (ev) => { ev.preventDefault(); handler(); });
+    } catch (e) {}
+    try {
+      el.addEventListener('touchstart', (ev) => { ev.preventDefault(); handler(); }, { passive: false });
+    } catch (e) {}
+    // expose that handler is attached for debugging
+    try { console.info('Attached fast handlers to', el.id); } catch(e){}
+  };
+
   const loginBtn = document.querySelector('#client-login-btn');
-  if (loginBtn) {
-    loginBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleClientLogin(); });
-  }
+  if (loginBtn) attachFastHandlers(loginBtn, handleClientLogin);
   const registerBtn = document.querySelector('#client-register-btn');
-  if (registerBtn) {
-    registerBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleClientSignup(); });
-  }
+  if (registerBtn) attachFastHandlers(registerBtn, handleClientSignup);
 }
 
 window.handleClientLogin = handleClientLogin;
