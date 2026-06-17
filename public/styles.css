@@ -417,8 +417,35 @@ body[data-page="client-dashboard"] {
   background: linear-gradient(180deg,#fbfdff,#ffffff);
 }
 body[data-page="client-dashboard"] .card { background: #ffffff; }
-body[data-page="client-dashboard"] .hero-visual { background: linear-gradient(180deg,#eef6ff,#dfefff); color: #072244; }
+body[data-page="client-dashboard"] .hero-visual { background: linear-gradient(180deg, rgba(199,46,46,0.95), rgba(226,6,19,0.95)); color: #fff; }
+body[data-page="client-dashboard"] .hero-visual h2,
+body[data-page="client-dashboard"] .hero-visual p,
+body[data-page="client-dashboard"] .hero-visual li,
+body[data-page="client-dashboard"] .hero-visual .metric-card h4,
+body[data-page="client-dashboard"] .hero-visual .metric-card p {
+  color: rgba(255,255,255,0.95);
+}
+body[data-page="client-dashboard"] .hero-visual .metric-card {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+}
 body[data-page="client-dashboard"] .status-under-review { background: #eef2ff; color: #34418d; }
+
+body[data-page="client-dashboard"] main.container {
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+}
+body[data-page="client-dashboard"] section.card:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0.8rem;
+}
+body[data-page="client-dashboard"] #client-message-form {
+  margin-bottom: 0;
+  gap: 0.5rem;
+}
+body[data-page="client-dashboard"] #client-message-input {
+  min-width: 0;
+}
 
 /* Homepage contact card stronger color */
 .contact-card { background: linear-gradient(180deg, rgba(13,61,102,0.06), rgba(235,245,255,0.96)); }
