@@ -39,6 +39,7 @@ function showMessage(message, type = 'success') {
 }
 
 async function handleClientLogin() {
+  showMessage('Processing login...', 'success');
   const email = document.querySelector('#client-email').value.trim();
   const password = document.querySelector('#client-password').value.trim();
   if (!email || !password) return showMessage('Complete all fields before logging in.', 'error');
@@ -54,6 +55,7 @@ async function handleClientLogin() {
 }
 
 async function handleClientSignup() {
+  showMessage('Processing registration...', 'success');
   const full_name = document.querySelector('#signup-name').value.trim();
   const email = document.querySelector('#signup-email').value.trim();
   const password = document.querySelector('#signup-password').value.trim();
