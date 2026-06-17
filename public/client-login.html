@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Client Login | BIC Canada Refund Portal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body data-page="client-login">
   <header class="header">
@@ -41,7 +44,7 @@
           <label for="client-password">Password</label>
           <input id="client-password" type="password" placeholder="Enter password" required />
         </div>
-        <button class="button-primary" type="button" onclick="handleClientLogin()">Sign In</button>
+        <button id="client-login-btn" class="button-primary" type="button" onclick="handleClientLogin()">Sign In</button>
       </form>
       <div style="margin-top:1rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
         <a href="/client-forgot.html">Forgot password?</a>
@@ -50,6 +53,6 @@
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

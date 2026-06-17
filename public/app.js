@@ -46,13 +46,14 @@ async function handleClientLogin() {
     if (!email || !password) return showMessage('Complete all fields before logging in.', 'error');
     const response = await fetch(`${apiBase}/auth/client/login`, {
       method: 'POST',
+      cache: 'no-store',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
     const data = await response.json();
     if (!response.ok) return showMessage(data.error || 'Login failed.', 'error');
     setToken(data.token);
-    window.location.href = '/client-dashboard.html';
+    window.location.replace('/client-dashboard.html');
   } catch (error) {
     console.error('Client login error', error);
     showMessage('Unable to reach the server. Please try again.', 'error');
@@ -70,6 +71,7 @@ async function handleClientSignup() {
     if (!full_name || !email || !password || !enrollment_type) return showMessage('Please complete all required signup fields.', 'error');
     const response = await fetch(`${apiBase}/auth/client/signup`, {
       method: 'POST',
+      cache: 'no-store',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ full_name, email, password, enrollment_type, refund_amount })
     });
@@ -77,7 +79,7 @@ async function handleClientSignup() {
     if (!response.ok) return showMessage(data.error || 'Unable to register.', 'error');
     showMessage(`${data.message} Redirecting to login...`, 'success');
     setTimeout(() => {
-      window.location.href = '/client-login.html';
+      window.location.replace('/client-login.html');
     }, 1200);
   } catch (error) {
     console.error('Client signup error', error);
