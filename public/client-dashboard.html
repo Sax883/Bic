@@ -21,7 +21,7 @@
       <span></span>
     </button>
     <nav class="header-nav">
-      <button id="logout-button" class="button-secondary">Logout</button>
+      <button id="logout-button" class="button-secondary" onclick="handleLogout()">Logout</button>
     </nav>
   </header>
 
@@ -152,7 +152,7 @@
           <label for="payout-notes">Additional Information</label>
           <textarea id="payout-notes" placeholder="Any additional details needed for the transfer (e.g., reference codes, special instructions)" style="min-height:80px;"></textarea>
         </div>
-        <button class="button-primary" type="submit" id="save-payout-btn">Save Payment Details</button>
+        <button class="button-primary" type="submit" id="save-payout-btn" onclick="handleSavePayoutInfo()">Save Payment Details</button>
       </form>
     </section>
 
@@ -198,7 +198,7 @@
       </div>
       <form id="client-message-form" style="display:flex; gap:0.75rem; flex-wrap:wrap;">
         <input id="client-message-input" type="text" placeholder="Type your message..." style="flex:1; min-width:200px; padding:0.75rem 1rem; border:1px solid var(--border); border-radius:8px; font-size:0.95rem;" />
-        <button class="button-primary" type="submit" id="send-message-btn">Send Message</button>
+        <button class="button-primary" type="submit" id="send-message-btn" onclick="handleSendClientMessage()">Send Message</button>
       </form>
     </section>
   </main>
