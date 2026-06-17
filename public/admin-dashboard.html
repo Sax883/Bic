@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | BIC Canada Refund Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="admin-dashboard">
+  <header class="header">
+    <div class="site-brand">
+      <div class="brand-mark">BIC</div>
+      <div class="brand-copy">
+        <div class="title">Admin Control Center</div>
+        <div class="subtitle">Corporate refund management</div>
+      </div>
+    </div>
+    <nav>
+      <button id="logout-button" class="button-secondary">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div id="message-area"></div>
+
+    <section class="card">
+      <div class="section-header">
+        <div>
+          <h2>Corporate Liability Snapshot</h2>
+          <p style="margin:0; color: var(--muted);">Quick-search clients, review outstanding liabilities, and act on disbursement updates.</p>
+        </div>
+        <input id="admin-search" type="search" placeholder="Search name, case ID, email or track" style="width:min(320px,100%); padding:0.95rem 1rem; border:1px solid var(--border); border-radius:14px;" />
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Client Ledger Overview</h2>
+      </div>
+      <div class="table-container" style="margin-top:1rem;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Case ID</th>
+              <th>Email</th>
+              <th>Track</th>
+              <th>Balance</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="admin-clients-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Admin Progress Tracker</h2>
+        <p style="margin:0; color: var(--muted);">Select a client to review stages and update case progress on the edit page.</p>
+      </div>
+      <div class="progress-stepper" style="margin-top:1rem;">
+        <div class="step active">Audit Completed</div>
+        <div class="step">Refund Authorized</div>
+        <div class="step">Processing</div>
+        <div class="step">Funds Disbursed</div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Support Messages</h2>
+        <p style="margin:0; color: var(--muted);">View client support requests</p>
+      </div>
+      <div id="admin-messages-list" style="margin-top:1rem; max-height:400px; overflow-y:auto;">
+        <div style="text-align:center; color:var(--muted);">No messages yet</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

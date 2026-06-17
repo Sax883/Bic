@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Ledger Edit | Admin | BIC Canada Refund Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="admin-edit">
+  <header class="header">
+    <div class="site-brand">
+      <div class="brand-mark">BIC</div>
+      <div class="brand-copy">
+        <div class="title">Client Ledger Edit</div>
+        <div class="subtitle">Update refund liability securely</div>
+      </div>
+    </div>
+    <nav>
+      <button id="logout-button" class="button-secondary">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div id="message-area"></div>
+    <section class="card">
+      <div class="section-header">
+        <div>
+          <p style="margin:0; color:var(--muted);">Client</p>
+          <h2 id="edit-client-name">Client Name</h2>
+          <p style="margin:0.5rem 0 0;">Case <strong id="edit-client-id"></strong> • <span id="edit-client-track"></span></p>
+        </div>
+        <div>
+          <div class="status-pill" id="client-case-status">Status</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-card" style="margin-top:1.5rem;">
+      <form id="admin-update-form">
+        <input type="hidden" id="client-id-hidden" />
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="input-total-initiated">Total Refund Initiated</label>
+            <input id="input-total-initiated" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="form-field">
+            <label for="input-total-pending">Total Refund Pending</label>
+            <input id="input-total-pending" type="number" min="0" step="0.01" required />
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="input-total-activated">Total Refund Activated</label>
+            <input id="input-total-activated" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="form-field">
+            <label for="input-total-settled">Total Refund Settled</label>
+            <input id="input-total-settled" type="number" min="0" step="0.01" required />
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="input-paid-to-date">Paid to Date</label>
+            <input id="input-paid-to-date" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="form-field">
+            <label for="input-outstanding-balance">Outstanding Balance</label>
+            <input id="input-outstanding-balance" type="number" min="0" step="0.01" required />
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="input-total-eligible">Refund Eligible</label>
+            <input id="input-total-eligible" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="form-field">
+            <label for="input-amount-refunded">Amount to Refund (New Payout)</label>
+            <input id="input-amount-refunded" type="number" min="0" step="0.01" required />
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="input-status">Case Status</label>
+            <select id="input-status" required>
+              <option>Under Review</option>
+              <option>Pending</option>
+              <option>Processing</option>
+              <option>Cleared</option>
+              <option>Completed</option>
+              <option>Failed</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="input-transaction-method">Payment Method</label>
+            <select id="input-transaction-method">
+              <option>Direct Bank Transfer</option>
+              <option>Wire Transfer</option>
+              <option>Cheque</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Progress Tracker</label>
+          <div class="grid grid-2" style="gap:0.75rem;">
+            <label><input type="checkbox" id="progress-audit" /> Audit Completed</label>
+            <label><input type="checkbox" id="progress-authorized" /> Refund Authorized</label>
+            <label><input type="checkbox" id="progress-processing" /> Processing</label>
+            <label><input type="checkbox" id="progress-disbursed" /> Funds Disbursed</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="input-notes">Admin System Notes</label>
+          <textarea id="input-notes" placeholder="Add internal remarks for banking, clearance, or routing issues."></textarea>
+        </div>
+        <div class="form-field">
+          <label>Computed Remaining Balance</label>
+          <div id="input-remaining-balance" style="padding:1rem; border-radius:12px; background: var(--surface-secondary); font-size:1.1rem; font-weight:700;">CAD 0.00</div>
+        </div>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
+          <button class="button-accent" type="submit">Save Ledger Update</button>
+          <button class="button-secondary" type="button" id="cancel-update">Cancel</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

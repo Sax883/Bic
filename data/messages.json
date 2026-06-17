@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "1781713352062",
+    "client_id": "BIC-2026-5100",
+    "client_name": "jj",
+    "message_text": "hi",
+    "sender": "client",
+    "created_at": "2026-06-17T16:22:32.062Z",
+    "admin_reply": "hello",
+    "admin_reply_at": "2026-06-17T16:22:53.927Z"
+  },
+  {
+    "_id": "1781713257329",
+    "client_id": "BIC-2026-8941",
+    "client_name": "John Doe",
+    "message_text": "Test message from client",
+    "sender": "client",
+    "created_at": "2026-06-17T16:20:57.329Z",
+    "admin_reply": "Thanks for reaching out! We will process your request soon.",
+    "admin_reply_at": "2026-06-17T16:21:12.170Z"
+  }
+]

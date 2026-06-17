@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forgot Password | BIC Canada Refund Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="client-forgot">
+  <header class="header">
+    <div class="site-brand">
+      <img src="images/bic-logo.jpeg" alt="BIC Canada Logo" class="brand-logo" />
+      <div class="brand-copy">
+        <div class="title">Password Recovery</div>
+        <div class="subtitle">Verify your case and reset credentials</div>
+      </div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/client-login.html">Client Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="form-card" style="max-width:560px; margin:1rem auto;">
+      <div class="section-header">
+        <h2>Forgot Password</h2>
+      </div>
+      <div id="message-area"></div>
+      <form id="forgot-form">
+        <div class="form-field">
+          <label for="forgot-email">Registered Email</label>
+          <input id="forgot-email" type="email" placeholder="client@example.com" required />
+        </div>
+        <button class="button-primary" type="submit">Request Reset</button>
+      </form>
+      <p style="margin-top:1rem; color: var(--muted);">If you cannot recover your password from this form, contact a BIC Canada support representative for secure assistance.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

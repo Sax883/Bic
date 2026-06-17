@@ -1,0 +1,354 @@
+[
+  {
+    "audit_id": "AUD-12480498",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T16:08:00.498Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": true
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": true,
+        "refund_authorized": true,
+        "processing": true,
+        "funds_disbursed": true
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-12119599",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T16:01:59.599Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": true
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-12114484",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T16:01:54.484Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-12099391",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T16:01:39.391Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-12097934",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T16:01:37.934Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-12096938",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T16:01:36.938Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-11991414",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-3837",
+    "changed_at": "2026-06-17T15:59:51.414Z",
+    "previous": {
+      "total_refund_eligible": 0,
+      "amount_refunded": 0,
+      "remaining_balance": 0,
+      "status": "Under Review",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": false,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 100,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "status": "Under Review",
+      "admin_notes": "test save",
+      "progress": {
+        "audit_completed": true,
+        "refund_authorized": false,
+        "processing": false,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-11769444",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T15:56:09.444Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-11760867",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T15:56:00.867Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-11758348",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T15:55:58.348Z",
+    "previous": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  },
+  {
+    "audit_id": "AUD-11756337",
+    "admin": "biccanada@gmail.com",
+    "client_id": "BIC-2026-5100",
+    "changed_at": "2026-06-17T15:55:56.337Z",
+    "previous": {
+      "total_refund_eligible": 0,
+      "amount_refunded": 0,
+      "remaining_balance": 0,
+      "status": "Under Review",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": false,
+        "funds_disbursed": false
+      }
+    },
+    "updated": {
+      "total_refund_eligible": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 900,
+      "status": "Completed",
+      "admin_notes": "New client registration pending verification.",
+      "progress": {
+        "audit_completed": false,
+        "refund_authorized": false,
+        "processing": true,
+        "funds_disbursed": false
+      }
+    }
+  }
+]

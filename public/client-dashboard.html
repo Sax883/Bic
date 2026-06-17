@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Dashboard | BIC Canada Refund Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="client-dashboard">
+  <header class="header">
+    <div class="site-brand">
+      <img src="images/bic-logo.jpeg" alt="BIC Canada Logo" class="brand-logo" />
+      <div class="brand-copy">
+        <div class="title">Client Dashboard</div>
+        <div class="subtitle">Refund & case monitoring hub</div>
+      </div>
+    </div>
+    <nav>
+      <button id="logout-button" class="button-secondary">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div id="message-area"></div>
+
+    <section class="card">
+      <div class="section-header">
+        <div>
+          <div style="font-size:0.95rem; color: var(--muted);">Client ID</div>
+          <div style="font-size:1.3rem; font-weight:700;"> <span id="client-id"></span></div>
+          <div style="font-size:1.05rem; margin-top:0.15rem;">Welcome back, <strong id="client-welcome"></strong></div>
+        </div>
+        <div>
+          <div class="status-pill" id="client-status">Status</div>
+          <div style="margin-top:0.65rem; color: var(--muted);">Canadian Refund Package</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid grid-2" style="margin-top:1.5rem;">
+      <div class="card">
+        <div class="section-header">
+          <h2>Case Summary</h2>
+          <p id="client-track-label" style="color: var(--muted);"></p>
+        </div>
+        <p style="margin:1rem 0 0; color: var(--muted);">Current application status, refund eligibility, and next steps are displayed in a client-first dashboard built for transparency and professional clarity.</p>
+        <div style="margin-top:1.5rem;">
+          <div style="display:grid; gap:0.95rem;">
+            <div><strong>Enrollment Track:</strong> <span id="client-track"></span></div>
+            <div><strong>Officer:</strong> <span id="office-agent"></span></div>
+            <div><strong>Updated:</strong> <span id="updated-at">Today</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <h2>Financial Overview</h2>
+        <p>Live tracking of refund settlement, pending service charges, and outstanding balance in Canadian dollars.</p>
+        <div class="metric-grid" style="margin-top:1.4rem;">
+          <div class="metric-card">
+            <h4>Total Refund Initiated</h4>
+            <p id="total-initiated-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+          </div>
+          <div class="metric-card">
+            <h4>Total Refund Pending</h4>
+            <p id="total-pending-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+            <small style="color:#7b7b7b; display:block; margin-top:0.5rem;">Complete service charge before funds will be released, contact your consultant.</small>
+          </div>
+          <div class="metric-card">
+            <h4>Total Refund Activated</h4>
+            <p id="total-activated-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+          </div>
+          <div class="metric-card">
+            <h4>Total Refund Settled</h4>
+            <p id="total-settled-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+          </div>
+          <div class="metric-card">
+            <h4>Paid to Date</h4>
+            <p id="paid-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+          </div>
+          <div class="metric-card">
+            <h4>Outstanding Balance</h4>
+            <p id="balance-value" style="color:#c41e3a; font-weight:700; font-size:1.3rem;">CAD 0.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Payout Method & Banking Details</h2>
+        <p style="margin:0; color: var(--muted);">Specify how you want to receive your refund</p>
+      </div>
+      <form id="client-payout-form" style="margin-top:1rem;">
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="payout-method">Preferred Payment Method</label>
+            <select id="payout-method" required>
+              <option value="">Select payment method</option>
+              <option>Bank Transfer</option>
+              <option>PayPal</option>
+              <option>Cryptocurrency</option>
+              <option>Cheque</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="payout-currency">Preferred Currency (if applicable)</label>
+            <select id="payout-currency">
+              <option>CAD (Canadian Dollar)</option>
+              <option>USD (US Dollar)</option>
+              <option>EUR (Euro)</option>
+              <option>GBP (British Pound)</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="payout-account-name">Account/Beneficiary Name</label>
+            <input id="payout-account-name" type="text" placeholder="Full name on account" />
+          </div>
+          <div class="form-field">
+            <label for="payout-bank-name">Bank/Service Name</label>
+            <input id="payout-bank-name" type="text" placeholder="Bank or payment provider name" />
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="payout-account-number">Account/Wallet Number</label>
+            <input id="payout-account-number" type="text" placeholder="Account, IBAN, or wallet address" />
+          </div>
+          <div class="form-field">
+            <label for="payout-swift-code">SWIFT/Routing Code</label>
+            <input id="payout-swift-code" type="text" placeholder="SWIFT code or routing number (if applicable)" />
+          </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-field">
+            <label for="payout-postal-code">Postal/Zip Code</label>
+            <input id="payout-postal-code" type="text" placeholder="Postal code for international transfer" />
+          </div>
+          <div class="form-field">
+            <label for="payout-country">Country</label>
+            <input id="payout-country" type="text" placeholder="Country name" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="payout-notes">Additional Information</label>
+          <textarea id="payout-notes" placeholder="Any additional details needed for the transfer (e.g., reference codes, special instructions)" style="min-height:80px;"></textarea>
+        </div>
+        <button class="button-primary" type="button" id="save-payout-btn">Save Payment Details</button>
+      </form>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Progress Tracker</h2>
+      </div>
+      <div class="progress-stepper">
+        <div class="step active">Audit Completed</div>
+        <div class="step">Refund Authorized</div>
+        <div class="step">Processing</div>
+        <div class="step">Funds Disbursed</div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Payout Ledger</h2>
+      </div>
+      <div class="table-container" style="margin-top:1rem;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Transaction</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <div class="section-header">
+        <h2>Contact Support</h2>
+        <p style="margin:0; color: var(--muted);">Send a message to our support team</p>
+      </div>
+      <div id="messages-container" style="margin-top:1rem; max-height:400px; overflow-y:auto; border:1px solid var(--border); border-radius:8px; padding:1rem; background:var(--surface-secondary); margin-bottom:1rem;">
+        <div style="text-align:center; color:var(--muted);">No messages yet</div>
+      </div>
+      <form id="client-message-form" style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <input id="client-message-input" type="text" placeholder="Type your message..." style="flex:1; min-width:200px; padding:0.75rem 1rem; border:1px solid var(--border); border-radius:8px; font-size:0.95rem;" />
+        <button class="button-primary" type="button" id="send-message-btn">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

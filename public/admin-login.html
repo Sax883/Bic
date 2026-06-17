@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | BIC Canada Refund Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="admin-login">
+  <header class="header">
+    <div class="site-brand">
+      <div class="brand-mark">BIC</div>
+      <div class="brand-copy">
+        <div class="title">Administrator Access</div>
+        <div class="subtitle">Secure control center</div>
+      </div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/client-login.html">Client</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="form-card" style="max-width:520px; margin:1rem auto;">
+      <div class="section-header">
+        <h2>Admin Portal Login</h2>
+      </div>
+      <div id="message-area"></div>
+      <form id="admin-login-form">
+        <div class="form-field">
+          <label for="admin-email">Email</label>
+          <input id="admin-email" type="email" placeholder="biccanada@gmail.com" required />
+        </div>
+        <div class="form-field">
+          <label for="admin-password">Password</label>
+          <input id="admin-password" type="password" placeholder="Enter password" required />
+        </div>
+        <button class="button-accent" type="submit">Admin Login</button>
+      </form>
+      <p style="margin-top:1rem; color: var(--muted);">Use the official BIC Canada administrator credentials for secure access.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

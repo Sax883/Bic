@@ -1,0 +1,210 @@
+[
+  {
+    "_id": "64a3228b7dd30f25d794d501",
+    "client_id": "BIC-2026-8941",
+    "full_name": "John Doe",
+    "email": "john.doe@example.com",
+    "password_hash": "client-password",
+    "enrollment_type": "Study Permit",
+    "application_date": "2026-03-22",
+    "status": "In Progress",
+    "financials": {
+      "total_refund_eligible": 5400,
+      "total_refund_initiated": 0,
+      "total_refund_pending": 0,
+      "total_refund_activated": 0,
+      "total_refund_settled": 0,
+      "paid_to_date": 0,
+      "amount_refunded": 2200,
+      "remaining_balance": 3200,
+      "outstanding_balance": 0,
+      "currency": "CAD"
+    },
+    "refund_history": [
+      {
+        "transaction_id": "TXN-99401",
+        "date": "2026-05-12",
+        "amount": 2200,
+        "method": "Direct Bank Transfer",
+        "status": "Completed"
+      }
+    ],
+    "admin_notes": "Client is waiting on final bank confirmation.",
+    "updated_at": "2026-05-12T14:10:00.000Z",
+    "progress": {
+      "audit_completed": false,
+      "refund_authorized": false,
+      "processing": false,
+      "funds_disbursed": false
+    },
+    "payout_info": {
+      "payout_method": "Bank Transfer",
+      "payout_currency": "CAD",
+      "account_name": "John Doe",
+      "bank_name": "RBC",
+      "account_number": "123456789",
+      "swift_code": "ROYCCAT2",
+      "postal_code": "M5H 2N2",
+      "country": "Canada",
+      "notes": "Test",
+      "updated_at": "2026-06-17T16:21:40.659Z"
+    }
+  },
+  {
+    "_id": "mqi5lxx9.9fu",
+    "client_id": "BIC-2026-3837",
+    "full_name": "Amina Hassan",
+    "email": "amina.hassan@example.com",
+    "password_hash": "client-password2",
+    "enrollment_type": "Express Entry",
+    "application_date": "2026-06-17",
+    "status": "Under Review",
+    "financials": {
+      "total_refund_eligible": 100,
+      "total_refund_initiated": 100,
+      "total_refund_pending": 100,
+      "total_refund_activated": 0,
+      "total_refund_settled": 0,
+      "paid_to_date": 0,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "outstanding_balance": 100,
+      "currency": "CAD"
+    },
+    "refund_history": [],
+    "admin_notes": "test save",
+    "updated_at": "2026-06-17T15:59:51.414Z",
+    "progress": {
+      "audit_completed": true,
+      "refund_authorized": false,
+      "processing": false,
+      "funds_disbursed": false
+    },
+    "transaction_method": "Cheque"
+  },
+  {
+    "_id": "mqi7i8pl.fyl",
+    "client_id": "BIC-2026-0425",
+    "full_name": "Sarah Kim",
+    "email": "sarah.kim@example.com",
+    "password_hash": "SecurePass456",
+    "enrollment_type": "Work Permit",
+    "application_date": "2026-06-17",
+    "status": "Under Review",
+    "financials": {
+      "total_refund_eligible": 0,
+      "total_refund_initiated": 0,
+      "total_refund_pending": 0,
+      "total_refund_activated": 0,
+      "total_refund_settled": 0,
+      "paid_to_date": 0,
+      "amount_refunded": 0,
+      "remaining_balance": 0,
+      "outstanding_balance": 0,
+      "currency": "CAD"
+    },
+    "refund_history": [],
+    "admin_notes": "New client registration pending verification.",
+    "updated_at": "2026-06-17T15:09:10.426Z",
+    "progress": {
+      "audit_completed": false,
+      "refund_authorized": false,
+      "processing": false,
+      "funds_disbursed": false
+    }
+  },
+  {
+    "_id": "mqi7l7r3.w3u",
+    "client_id": "BIC-2026-9151",
+    "full_name": "Priya Patel",
+    "email": "priya.patel@example.com",
+    "password_hash": "MyPassword789",
+    "enrollment_type": "Study Permit",
+    "application_date": "2026-06-17",
+    "status": "Under Review",
+    "financials": {
+      "total_refund_eligible": 0,
+      "total_refund_initiated": 0,
+      "total_refund_pending": 0,
+      "total_refund_activated": 0,
+      "total_refund_settled": 0,
+      "paid_to_date": 0,
+      "amount_refunded": 0,
+      "remaining_balance": 0,
+      "outstanding_balance": 0,
+      "currency": "CAD"
+    },
+    "refund_history": [],
+    "admin_notes": "New client registration pending verification.",
+    "updated_at": "2026-06-17T15:11:29.151Z",
+    "progress": {
+      "audit_completed": false,
+      "refund_authorized": false,
+      "processing": false,
+      "funds_disbursed": false
+    }
+  },
+  {
+    "_id": "mqi7mm60.fgk",
+    "client_id": "BIC-2026-4488",
+    "full_name": "Alex Johnson",
+    "email": "alex.johnson@example.com",
+    "password_hash": "Alex12345",
+    "enrollment_type": "Express Entry",
+    "application_date": "2026-06-17",
+    "status": "Under Review",
+    "financials": {
+      "total_refund_eligible": 0,
+      "total_refund_initiated": 0,
+      "total_refund_pending": 0,
+      "total_refund_activated": 0,
+      "total_refund_settled": 0,
+      "paid_to_date": 0,
+      "amount_refunded": 0,
+      "remaining_balance": 0,
+      "outstanding_balance": 0,
+      "currency": "CAD"
+    },
+    "refund_history": [],
+    "admin_notes": "New client registration pending verification.",
+    "updated_at": "2026-06-17T15:12:34.492Z",
+    "progress": {
+      "audit_completed": false,
+      "refund_authorized": false,
+      "processing": false,
+      "funds_disbursed": false
+    }
+  },
+  {
+    "_id": "mqi7n9sc.shh",
+    "client_id": "BIC-2026-5100",
+    "full_name": "jj",
+    "email": "saputoinc11@gmail.com",
+    "password_hash": "power",
+    "enrollment_type": "Express Entry",
+    "application_date": "2026-06-17",
+    "status": "Completed",
+    "financials": {
+      "total_refund_eligible": 1000,
+      "total_refund_initiated": 1000,
+      "total_refund_pending": 0,
+      "total_refund_activated": 1000,
+      "total_refund_settled": 0,
+      "paid_to_date": 1000,
+      "amount_refunded": 0,
+      "remaining_balance": 100,
+      "outstanding_balance": 100,
+      "currency": "CAD"
+    },
+    "refund_history": [],
+    "admin_notes": "New client registration pending verification.",
+    "updated_at": "2026-06-17T16:08:00.497Z",
+    "progress": {
+      "audit_completed": true,
+      "refund_authorized": true,
+      "processing": true,
+      "funds_disbursed": true
+    },
+    "transaction_method": "Direct Bank Transfer"
+  }
+]
