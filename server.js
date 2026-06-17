@@ -24,9 +24,17 @@ if (!MONGODB_URI) {
 let db;
 let mongoClient;
 let dbPromise = null;
+let dbError = null;
 
 async function connectDb() {
-  mongoClient = new MongoClient(MONGODB_URI);
+  if (!MONGODB_URI) {
+    throw new Error('Missing MONGODB_URI environment variable.');
+  }
+  mongoClient = new MongoClient(MONGODB_URI, {
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 5000,
+    socketTimeoutMS: 10000
+  });
   await mongoClient.connect();
   db = mongoClient.db();
   try {
@@ -37,6 +45,19 @@ async function connectDb() {
     console.warn('MongoDB index creation warning:', err.message);
   }
   console.log('Connected to MongoDB');
+}
+
+async function ensureDbConnected() {
+  if (db) return;
+  if (dbError) throw dbError;
+  if (!dbPromise) {
+    dbPromise = connectDb().catch((err) => {
+      dbError = err;
+      dbPromise = null;
+      throw err;
+    });
+  }
+  await dbPromise;
 }
 
 async function ensureDbConnected() {
@@ -76,6 +97,10 @@ function verifyToken(token) {
     return null;
   }
 }
+
+const asyncHandler = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
 
 function normalizeClient(client) {
   const defaultFinancials = {
@@ -129,15 +154,15 @@ app.use(cookieParser());
 app.use(express.static(PUBLIC_DIR));
 app.use('/image', express.static(path.join(__dirname, 'image')));
 
-app.post('/api/auth/client/login', async (req, res) => {
+app.post('/api/auth/client/login', asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const client = await getClientCollection().findOne({ email, password_hash: password });
   if (!client) return res.status(400).json({ error: 'Invalid credentials' });
   const token = generateToken({ type: 'client', email: client.email, client_id: client.client_id, full_name: client.full_name });
   res.json({ token, client_id: client.client_id, full_name: client.full_name });
-});
+}));
 
-app.post('/api/auth/client/signup', async (req, res) => {
+app.post('/api/auth/client/signup', asyncHandler(async (req, res) => {
   const { full_name, email, password, enrollment_type, refund_amount } = req.body;
   if (!email || !password || !full_name) {
     return res.status(400).json({ error: 'full_name, email, and password are required' });
@@ -181,7 +206,7 @@ app.post('/api/auth/client/signup', async (req, res) => {
   };
   await getClientCollection().insertOne(newClient);
   res.json({ message: 'Signup successful. Please log in.', client_id: clientId });
-});
+}));
 
 app.post('/api/auth/client/forgot', async (req, res) => {
   const { email } = req.body;
@@ -370,6 +395,12 @@ app.get('/api/client/messages', authenticateClient, async (req, res) => {
     .sort({ created_at: -1 })
     .toArray();
   res.json({ messages });
+});
+
+app.use((err, req, res, next) => {
+  console.error('Unhandled server error:', err);
+  if (res.headersSent) return next(err);
+  res.status(500).json({ error: 'Server error. Please try again in a moment.' });
 });
 
 app.get('*', (req, res) => {

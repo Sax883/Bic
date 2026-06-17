@@ -38,6 +38,15 @@ function showMessage(message, type = 'success') {
   }, 5000);
 }
 
+async function parseResponse(response) {
+  const text = await response.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { error: text || `HTTP ${response.status}` };
+  }
+}
+
 async function handleClientLogin() {
   try {
     showMessage('Processing login...', 'success');
@@ -50,8 +59,8 @@ async function handleClientLogin() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
-    const data = await response.json();
-    if (!response.ok) return showMessage(data.error || 'Login failed.', 'error');
+    const data = await parseResponse(response);
+    if (!response.ok) return showMessage(data.error || `Login failed (${response.status}).`, 'error');
     setToken(data.token);
     window.location.replace('/client-dashboard.html');
   } catch (error) {
@@ -75,8 +84,8 @@ async function handleClientSignup() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ full_name, email, password, enrollment_type, refund_amount })
     });
-    const data = await response.json();
-    if (!response.ok) return showMessage(data.error || 'Unable to register.', 'error');
+    const data = await parseResponse(response);
+    if (!response.ok) return showMessage(data.error || `Unable to register (${response.status}).`, 'error');
     showMessage(`${data.message} Redirecting to login...`, 'success');
     setTimeout(() => {
       window.location.replace('/client-login.html');
