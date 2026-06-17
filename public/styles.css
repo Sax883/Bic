@@ -479,6 +479,23 @@ textarea {
   body[data-page="client-dashboard"] #client-message-form { margin-bottom:0.2rem; }
   body[data-page="client-dashboard"] .client-id-card .card-nav-toggle { display: flex; }
   body[data-page="client-dashboard"] section.card:last-of-type { margin-bottom: 0.25rem; }
+
+  /* Client ID card uses primary (save button) dark color on dashboard */
+  body[data-page="client-dashboard"] .client-id-card { background: var(--primary); color: #fff; }
+  body[data-page="client-dashboard"] .client-id-card .status-pill { background: rgba(255,255,255,0.12); color: #fff; border: none; }
+  body[data-page="client-dashboard"] .client-id-card .section-header div { color: #fff; }
+
+  /* Case Summary card uses under-review tint */
+  body[data-page="client-dashboard"] .case-summary { background: #eef2ff; color: var(--heading); }
+
+  /* Dashboard sections (tab views) */
+  .dashboard-section { display: none; }
+  .dashboard-section.active { display: block; }
+  .overview-section { display: block; }
+
+  .dashboard-menu { display:flex; flex-direction:column; gap:0.35rem; }
+  .dashboard-menu .dashboard-menu-item { background:none; border:none; text-align:left; padding:0.5rem 0.6rem; border-radius:8px; cursor:pointer; color:var(--text); }
+  .dashboard-menu .dashboard-menu-item:hover { background:var(--surface-secondary); }
   /* Make progress step active use under-review color */
   .progress-stepper .step.active { background: var(--surface-secondary); color: var(--heading); border-radius: 10px; padding: 0.6rem; }
 }

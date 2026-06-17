@@ -26,13 +26,19 @@
   <main class="container">
     <div id="message-area"></div>
 
-    <section class="card client-id-card">
+  <section class="card client-id-card overview-section">
       <button id="dashboard-nav-toggle" class="nav-toggle card-nav-toggle" aria-label="Open menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
       <div id="dashboard-menu" class="dashboard-menu" role="menu">
+        <button data-view="overview" class="dashboard-menu-item" type="button">Overview</button>
+        <button data-view="payout" class="dashboard-menu-item" type="button">Payout Method</button>
+        <button data-view="progress" class="dashboard-menu-item" type="button">Progress Tracker</button>
+        <button data-view="ledger" class="dashboard-menu-item" type="button">Payout Ledger</button>
+        <button data-view="contact" class="dashboard-menu-item" type="button">Contact Support</button>
+        <hr style="margin:8px 0;border:none;border-top:1px solid var(--border);" />
         <button id="dashboard-logout-button" class="button-secondary" type="button">Logout</button>
       </div>
       <div class="section-header">
@@ -63,7 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-visual">
+      <div id="financial-overview" class="hero-visual overview-section">
         <h2>Financial Overview</h2>
         <p>Live tracking of refund settlement, pending service charges, and outstanding balance in Canadian dollars.</p>
         <div class="metric-grid" style="margin-top:1.4rem;">
@@ -96,7 +102,7 @@
       </div>
     </section>
 
-    <section class="card" style="margin-top:1.5rem;">
+    <section id="payout-section" class="card dashboard-section" style="margin-top:1.5rem;">
       <div class="section-header">
         <h2>Payout Method & Banking Details</h2>
         <p style="margin:0; color: var(--muted);">Specify how you want to receive your refund</p>
@@ -162,7 +168,7 @@
       </form>
     </section>
 
-    <section class="card" style="margin-top:1.5rem;">
+    <section id="progress-section" class="card dashboard-section" style="margin-top:1.5rem;">
       <div class="section-header">
         <h2>Progress Tracker</h2>
       </div>
@@ -174,7 +180,7 @@
       </div>
     </section>
 
-    <section class="card" style="margin-top:1.5rem;">
+    <section id="ledger-section" class="card dashboard-section" style="margin-top:1.5rem;">
       <div class="section-header">
         <h2>Payout Ledger</h2>
       </div>
@@ -194,7 +200,7 @@
       </div>
     </section>
 
-    <section class="card" style="margin-top:1.5rem;">
+    <section id="contact-section" class="card dashboard-section" style="margin-top:1.5rem;">
       <div class="section-header">
         <h2>Contact Support</h2>
         <p style="margin:0; color: var(--muted);">Send a message to our support team</p>

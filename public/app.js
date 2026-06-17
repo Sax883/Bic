@@ -418,6 +418,27 @@ function closeDashboardMenu() {
   document.querySelector('#dashboard-nav-toggle')?.classList.remove('open');
 }
 
+function showDashboardView(view) {
+  const overviewEls = document.querySelectorAll('.overview-section');
+  const dashboardSections = document.querySelectorAll('.dashboard-section');
+  // hide all dashboard sections
+  dashboardSections.forEach(el => el.classList.remove('active'));
+  // show overview (client-id, case summary, financial) or specific section
+  if (view === 'overview') {
+    overviewEls.forEach(el => el.style.display = 'block');
+    dashboardSections.forEach(el => el.style.display = 'none');
+  } else {
+    overviewEls.forEach(el => el.style.display = 'none');
+    dashboardSections.forEach(el => el.style.display = 'none');
+    const sel = document.querySelector(`#${view}-section`);
+    if (sel) {
+      sel.style.display = 'block';
+      sel.classList.add('active');
+    }
+  }
+  closeDashboardMenu();
+}
+
 function bindEvents() {
   document.querySelector('#client-login-form')?.addEventListener('submit', e => { e.preventDefault(); handleClientLogin(); });
   document.querySelector('#client-signup-form')?.addEventListener('submit', e => { e.preventDefault(); handleClientSignup(); });
@@ -433,6 +454,13 @@ function bindEvents() {
     toggleDashboardMenu();
   });
   document.querySelector('#dashboard-logout-button')?.addEventListener('click', handleLogout);
+  // dashboard menu navigation
+  document.querySelectorAll('.dashboard-menu-item')?.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const view = btn.getAttribute('data-view');
+      if (view) showDashboardView(view);
+    });
+  });
   document.querySelector('#send-message-btn')?.addEventListener('click', handleSendClientMessage);
   document.querySelector('#client-message-input')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendClientMessage(); });
   document.querySelector('#save-payout-btn')?.addEventListener('click', handleSavePayoutInfo);
@@ -481,6 +509,8 @@ window.addEventListener('DOMContentLoaded', () => {
   if (document.body.dataset.page === 'client-dashboard') {
     loadClientDashboard();
     loadClientMessages();
+    // initialize dashboard view to overview
+    showDashboardView('overview');
     setInterval(() => {
       loadClientDashboard();
       loadClientMessages();
