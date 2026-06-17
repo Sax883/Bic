@@ -165,20 +165,39 @@ nav a.button {
 
 .dashboard-menu {
   position: absolute;
-  top: 3.75rem;
+  /* position the menu below the client card so it doesn't overlap header text */
+  top: calc(100% + 0.4rem);
   right: 1rem;
-  min-width: 180px;
+  min-width: 200px;
   background: var(--surface);
   border: 1px solid var(--border);
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
-  border-radius: 14px;
-  padding: 0.75rem;
-  display: none;
-  z-index: 15;
+  border-radius: 12px;
+  padding: 0.25rem;
+  display: none; /* hidden by default */
+  z-index: 9999; /* ensure it overlays content cleanly */
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
 .dashboard-menu.open {
+  display: flex; /* show as vertical column when opened */
+}
+
+.dashboard-menu .dashboard-menu-item {
   display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 0.9rem;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.dashboard-menu .dashboard-menu-item:hover {
+  background: var(--surface-secondary);
 }
 
 .site-brand {
