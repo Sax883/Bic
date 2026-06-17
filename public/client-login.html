@@ -32,7 +32,7 @@
         <h2>Secure Client Sign In</h2>
       </div>
       <div id="message-area"></div>
-      <form id="client-login-form">
+      <form id="client-login-form" onsubmit="return false;">
         <div class="form-field">
           <label for="client-email">Verified Email</label>
           <input id="client-email" type="email" placeholder="client@example.com" required />
@@ -41,7 +41,7 @@
           <label for="client-password">Password</label>
           <input id="client-password" type="password" placeholder="Enter password" required />
         </div>
-        <button class="button-primary" type="submit" onclick="handleClientLogin()">Sign In</button>
+        <button class="button-primary" type="button" onclick="handleClientLogin()">Sign In</button>
       </form>
       <div style="margin-top:1rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
         <a href="/client-forgot.html">Forgot password?</a>

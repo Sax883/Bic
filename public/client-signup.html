@@ -32,7 +32,7 @@
         <h2>Client Registration</h2>
       </div>
       <div id="message-area"></div>
-      <form id="client-signup-form">
+      <form id="client-signup-form" onsubmit="return false;">
         <div class="form-field">
           <label for="signup-name">Full Name</label>
           <input id="signup-name" type="text" placeholder="John Doe" required />
@@ -59,7 +59,7 @@
           <label for="signup-refund-amount">Refund Amount Filed</label>
           <input id="signup-refund-amount" type="number" min="0" step="0.01" placeholder="Enter refund amount you are filing for" required />
         </div>
-        <button class="button-primary" type="submit" onclick="handleClientSignup()">Register Account</button>
+        <button class="button-primary" type="button" onclick="handleClientSignup()">Register Account</button>
       </form>
       <p style="margin-top:1rem; color: var(--muted);">After registration, use the login page to access your dashboard and review your case details.</p>
     </section>

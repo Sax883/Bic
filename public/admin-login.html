@@ -32,7 +32,7 @@
         <h2>Admin Portal Login</h2>
       </div>
       <div id="message-area"></div>
-      <form id="admin-login-form">
+      <form id="admin-login-form" onsubmit="return false;">
         <div class="form-field">
           <label for="admin-email">Email</label>
           <input id="admin-email" type="email" placeholder="biccanada@gmail.com" required />
@@ -41,7 +41,7 @@
           <label for="admin-password">Password</label>
           <input id="admin-password" type="password" placeholder="Enter password" required />
         </div>
-        <button class="button-accent" type="submit" onclick="handleAdminLogin()">Admin Login</button>
+        <button class="button-accent" type="button" onclick="handleAdminLogin()">Admin Login</button>
       </form>
       <p style="margin-top:1rem; color: var(--muted);">Use the official BIC Canada administrator credentials for secure access.</p>
     </section>

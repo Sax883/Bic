@@ -400,6 +400,16 @@ function bindEvents() {
   });
 }
 
+window.handleClientLogin = handleClientLogin;
+window.handleClientSignup = handleClientSignup;
+window.handleForgotPassword = handleForgotPassword;
+window.handleAdminLogin = handleAdminLogin;
+window.handleAdminUpdate = handleAdminUpdate;
+window.handleSavePayoutInfo = handleSavePayoutInfo;
+window.handleSendClientMessage = handleSendClientMessage;
+window.handleLogout = handleLogout;
+window.handleAdminReply = handleAdminReply;
+
 window.addEventListener('DOMContentLoaded', () => {
   bindEvents();
   if (document.body.dataset.page === 'client-dashboard') {
